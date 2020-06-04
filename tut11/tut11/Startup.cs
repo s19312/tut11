@@ -22,12 +22,10 @@ namespace tut11
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
-});
+        {
+            services.AddDbContext<MvcMovieContext>(options =>
+              options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+
             services.AddControllersWithViews();
         }
 

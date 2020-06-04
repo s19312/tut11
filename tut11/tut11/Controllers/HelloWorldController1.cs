@@ -12,13 +12,16 @@ namespace tut11.Controllers
         [HttpGet("/HelloWorld/")]
         public IActionResult Index()
         {
-            return Ok("This is a defaul action...");
+            return View();
         }
 
         [HttpGet("/HelloWorld/Welcome/")]
-        public IActionResult Welcome(string name, int ID = 1)
+        public IActionResult Welcome(string name, int numTimes = 1)
         {
-            return Ok(HtmlEncoder.Default.Encode($"Hello {name}, ID: {ID}"));
+            ViewData["Message"] = "Hello " + name;
+            ViewData["NumTimes"] = numTimes;
+
+            return View();
         }
     }
 }
